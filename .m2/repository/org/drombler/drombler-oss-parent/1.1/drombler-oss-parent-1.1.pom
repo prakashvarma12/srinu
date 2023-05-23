@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+        COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Notice
+
+The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
+Version 1.0 (the "License"); you may not use this file except in
+compliance with the License. A copy of the License is available at
+http://www.opensource.org/licenses/cddl1.txt
+
+The Original Code is Drombler.org. The Initial Developer of the
+Original Code is Florian Brunner (Sourceforge.net user: puce).
+Copyright 2012 Drombler.org. All Rights Reserved.
+
+Contributor(s): .
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.softsmithy</groupId>
+        <artifactId>softsmithy-parent</artifactId>
+        <version>2.3</version>
+        <relativePath />
+    </parent>
+    
+    <groupId>org.drombler</groupId>
+    <artifactId>drombler-oss-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.1</version>
+    
+    <name>Drombler OSS - Parent POM</name>
+    <url>http://www.drombler.org</url>
+    <description>This Drombler OSS Parent POM should be the parent (either directly or indirectly) of every Drombler project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
+    <inceptionYear>2012</inceptionYear>
+    <organization>
+        <name>Drombler</name>
+        <url>http://www.drombler.com</url>
+    </organization>
+    
+    <scm>
+        <connection>scm:hg:http://hg.code.sf.net/p/drombler/drombler-oss-parent</connection>
+        <developerConnection>scm:hg:ssh://${username}@hg.code.sf.net/p/drombler/drombler-oss-parent</developerConnection>
+        <url>http://sourceforge.net/p/drombler/drombler-oss-parent</url>
+      <tag>drombler-oss-parent-1.1</tag>
+  </scm>
+
+    <issueManagement>
+        <system>SourceForge.net</system>
+        <url>http://sourceforge.net/p/drombler/tickets/</url>
+    </issueManagement>
+    
+    <licenses>
+        <license>
+            <name>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</name>
+            <distribution>repo</distribution>
+            <!--<url>http://java.sun.com/spl.html</url>-->
+            <url>LICENSE.txt</url>
+        </license>
+    </licenses>
+
+    <properties>
+        
+        <!-- Dev Environment Defaults -->
+        <netbeans.hint.license>drombler-oss</netbeans.hint.license>
+        <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
+        <excludePackageNames>*.internal.*:*.impl.*</excludePackageNames> <!-- used by Javadoc plugin --><!-- TODO: get this from OSGi meta data-->
+       
+        <!-- Plugin Versions Defaults -->
+        <plugin.jaxb.version>0.8.3</plugin.jaxb.version>
+        <plugin.felix-scr.version>1.7.4</plugin.felix-scr.version>
+        
+        <!-- Dependency Versions Defaults -->
+        <dependency.osgi.version>1.4.0</dependency.osgi.version>
+        <dependency.felix-scr.version>1.6.2</dependency.felix-scr.version>
+        <dependency.felix-scr-annotations.version>1.6.0</dependency.felix-scr-annotations.version>
+        <dependency.commons-lang3.version>3.1</dependency.commons-lang3.version>
+        <dependency.softsmithy.version>0.4</dependency.softsmithy.version>
+        <dependency.junit.version>4.11</dependency.junit.version>
+    </properties>
+
+    <!-- Not inherited!?? -->
+    <prerequisites>
+        <maven>${maven.version}</maven>
+    </prerequisites>
+
+    <build>
+        <pluginManagement>        
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-scr-plugin</artifactId>
+                    <version>${plugin.felix-scr.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jvnet.jaxb2.maven2</groupId>
+                    <artifactId>maven-jaxb2-plugin</artifactId>
+                    <version>${plugin.jaxb.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>${dependency.osgi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.osgi.compendium</artifactId>
+                <version>${dependency.osgi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.scr.annotations</artifactId>
+                <version>${dependency.felix-scr-annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.scr</artifactId>
+                <version>${dependency.felix-scr.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${dependency.commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.softsmithy.lib</groupId>
+                <artifactId>softsmithy-lib-core</artifactId>
+                <version>${dependency.softsmithy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.softsmithy.lib</groupId>
+                <artifactId>softsmithy-lib-time</artifactId>
+                <version>${dependency.softsmithy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.softsmithy.devlib</groupId>
+                <artifactId>softsmithy-devlib-core</artifactId>
+                <version>${dependency.softsmithy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${dependency.junit.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
